@@ -41,16 +41,16 @@
             this.errMsg = error.message;
             switch (error.code) {
               case "auth/invalid-email":
-                this.errMsg.value = "Invalid email";
+                this.errMsg = "Invalid email";
                 break;
               case "auth/user-not-found":
-                this.errMsg.value = "No account with that email found";
+                this.errMsg = "No account with that email found";
                 break;
               case "auth/wrong-password":
-                this.errMsg.value = "Invalid password";
+                this.errMsg = "Invalid password";
                 break;
               default:
-                this.errMsg.value = "Email or password was Incorrect"
+                this.errMsg = "Email or password was Incorrect"
                 break; 
             
             
