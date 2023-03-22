@@ -1,3 +1,3 @@
 <template>
-  <h1>SUCCESSFUL!</h1>
+  <h1>USER HAS SIGNED IN, {{ user }}</h1>
 </template>

@@ -36,6 +36,7 @@ export default {
         .then((data) => {  
           console.log("Registeration Done");
           console.log(data);
+          this.$router.push("/success");
         })
         .catch((error) => {
           console.log("Error Registering");
