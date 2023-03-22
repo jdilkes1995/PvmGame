@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import RegisterVue from './Register.vue'
+import RegisterVue from './SignIn.vue'
 export default {
   
   components: {

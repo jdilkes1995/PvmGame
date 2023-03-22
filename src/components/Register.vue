@@ -19,7 +19,9 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  sendEmailVerification,
 } from "firebase/auth";
+
 export default {
   data() {
     return {
@@ -30,17 +32,18 @@ export default {
   methods: {
     register() {
       createUserWithEmailAndPassword(getAuth(), this.email, this.password)
-        .then((data) => {
+      sendEmailVerification(getAuth().currentUser)
+        .then((data) => {  
           console.log("Registeration Done");
           console.log(data);
-          this.$router.push("/success");
         })
         .catch((error) => {
           console.log("Error Registering");
           alert(error.message);
         });
+       
     },
-  },
+  },  
 };
 </script>
 
