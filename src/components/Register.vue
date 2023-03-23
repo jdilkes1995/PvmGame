@@ -119,9 +119,11 @@ export default {
       background: rgb(255, 255, 255);
       justify-content: space-evenly;
       cursor: pointer;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.131);
 
       &__login {
         width: 50%;
+        border-right: 1px solid rgba(0, 0, 0, 0.131);
       }
 
       &__register {
