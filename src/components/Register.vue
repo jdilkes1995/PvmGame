@@ -12,7 +12,7 @@
           Register
         </div>
       </div>
-      <div v-show="!hasAccount" class="register__form-inner">
+      <div v-if="!hasAccount" class="register__form-inner">
         <span class="register__form-error">{{ errMsg }}</span>
         <input type="text" placeholder="Email" v-model="email" />
         <input type="password" placeholder="Password" v-model="password" />
@@ -23,7 +23,7 @@
           </button>
         </div>
       </div>
-      <div v-show="hasAccount" class="register__form-inner">
+      <div v-if="hasAccount" class="register__form-inner">
         <input type="text" placeholder="Email" v-model="email" />
         <input type="password" placeholder="Password" v-model="password" />
         <p v-if="errMsg">{{ this.errMsg }}</p>
@@ -139,6 +139,7 @@ export default {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
     background: rgb(255, 255, 255);
     border-radius: 4px;
+    min-width: 320px;
 
     &-tabs {
       display: flex;
