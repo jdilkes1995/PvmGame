@@ -53,30 +53,6 @@ export default {
     },
   },
   methods: {
-    // register() {
-    //   createUserWithEmailAndPassword(getAuth(), this.email, this.password);
-    //   sendEmailVerification(getAuth().currentUser)
-    //     .then((data) => {
-    //       console.log("Registeration Done");
-    //       console.log(data);
-    //       this.$router.push("/success");
-    //     })
-    //     .catch((error) => {
-    //       console.log("Error Registering");
-    //       alert(error.message);
-    //     });
-    // },
-    // async signInWithGoogle() {
-    //   const provider = new GoogleAuthProvider();
-    //   signInWithPopup(getAuth(), provider)
-    //     .then((result) => {
-    //       console.log(result.user);
-    //       this.$router.push("/success");
-    //     })
-    //     .catch((error) => {
-    //       //handle the error
-    //     });
-    // },
     register() {
       this.$store
         .dispatch("register", { email: this.email, password: this.password })
