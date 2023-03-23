@@ -1,27 +1,16 @@
 <template>
-  
-<div class="main">
-
-  <register-vue />
-
-</div>
-
-
+  <div class="main">
+    <register-vue />
+  </div>
 </template>
 
 <script>
-import RegisterVue from './SignIn.vue'
+import RegisterVue from "../components/Register.vue";
 export default {
-  
   components: {
-
-    RegisterVue
-
-  }
-
-}
+    RegisterVue,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -29,8 +29,6 @@
         <p v-if="errMsg">{{ this.errMsg }}</p>
         <div class="register__buttons">
           <button class="submit" @click="signIn">Login</button>
-
-          <!-- <router-link to="/Register">Create an account</router-link> -->
         </div>
       </div>
     </div>
@@ -110,7 +108,6 @@ export default {
   &__form {
     display: flex;
     flex-direction: column;
-    padding: 32px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
     background: rgb(255, 255, 255);
@@ -121,39 +118,35 @@ export default {
       display: flex;
       background: rgb(255, 255, 255);
       justify-content: space-evenly;
-      padding: 16px 0;
       cursor: pointer;
 
       &__login {
         width: 50%;
-
-        &:hover,
-        &:active,
-        &:focus {
-          background: rgb(0, 157, 255);
-          color: white;
-          border-radius: 4px;
-          border-right: none;
-        }
       }
 
       &__register {
         width: 50%;
+      }
 
+      &__login,
+      &__register {
+        padding: 16px 0;
         &:hover,
         &:active,
         &:focus {
           background: rgb(0, 157, 255);
           color: white;
-          border-radius: 4px;
+          // border-radius: 4px;
           border-right: none;
         }
+        text-decoration: underline;
       }
     }
 
     &-inner {
       display: flex;
       flex-direction: column;
+      padding: 32px;
     }
 
     &-error {
