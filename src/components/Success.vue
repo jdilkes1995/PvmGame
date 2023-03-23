@@ -1,3 +1,19 @@
 <template>
-  <h1>USER HAS SIGNED IN, {{ user }}</h1>
+  <h1>{{ user.email }} has successfully signed in</h1>
 </template>
+
+<script>
+export default {
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+  },
+  mounted() {
+    console.log("success user", this.user);
+    if (!this.user) {
+      this.$router.push("/"); // Redirect to login if no user is logged in
+    }
+  },
+};
+</script>
