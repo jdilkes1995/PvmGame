@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/components/Home.vue";
 import Success from "@/components/Success.vue";
 import Register from "@/components/Register.vue";
-//import SignIn from "@/components/SignIn.vue";
+import SignIn from "@/components/SignIn.vue";
 import MyTeam from "@/components/MyTeam.vue";
 import CreateTeam from "@/components/CreateTeam.vue";
 import Play from "@/components/Play.vue";
@@ -22,7 +22,7 @@ const routes = [
       hideNavbar: true,
     },
   },
-  { path: "/sign", component: SignIn },
+  // { path: "/sign", component: SignIn },
 ];
 
 const router = createRouter({
@@ -32,10 +32,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isSignedIn = localStorage.getItem("isSignedIn") === "true";
-  if (to.path === "/" && isSignedIn) {
-    next("/success");
-  } else if (to.path !== "/" && !isSignedIn) {
-    next("/");
+
+  if (to.path !== "/register" && !isSignedIn) {
+    next("/register");
   } else {
     next();
   }
