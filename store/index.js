@@ -139,7 +139,7 @@ export default createStore({
             resolve(result.user);
           })
           .catch((error) => {
-            console.log("Error signing in with Google");
+            console.log(error);
             commit("setErrorMsg", error.message);
             reject(error);
           });

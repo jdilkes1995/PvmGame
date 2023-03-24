@@ -28,7 +28,7 @@
         <span class="material-icons">videogame_asset</span>
         <span class="text">Play!</span>
       </router-link>
-      <router-link class="button" to="/user_settings">
+      <router-link class="button" to="/usersettings">
         <span class="material-icons">settings</span>
         <span class="text">Settings</span>
       </router-link>
