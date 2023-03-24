@@ -14,7 +14,7 @@
       </div>
       <div v-if="!hasAccount" class="register__form-inner">
         <span class="register__form-error">{{ errMsg }}</span>
-        <input type="text" placeholder="Username" v-model="username"/>
+        <input type="text" placeholder="Username" v-model="username" />
         <input type="text" placeholder="Email" v-model="email" />
         <input type="password" placeholder="Password" v-model="password" />
         <div class="register__buttons">
@@ -40,7 +40,7 @@
 export default {
   data() {
     return {
-      username: '',
+      username: "",
       email: null,
       password: null,
       errMsg: null,
@@ -55,7 +55,11 @@ export default {
   methods: {
     register() {
       this.$store
-        .dispatch("register", { username: this.username, email: this.email, password: this.password })
+        .dispatch("register", {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+        })
         .then(() => {
           this.$router.push("/success");
         })

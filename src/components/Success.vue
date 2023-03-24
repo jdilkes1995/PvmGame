@@ -1,5 +1,8 @@
 <template>
-  <h1>{{ user.email }} has successfully signed in</h1>
+  <div v-if="user">
+    <h1>{{ user.displayName }} has successfully signed in</h1>
+    <span>{{ user.metadata.lastSignInTime }}</span>
+  </div>
 </template>
 
 <script>

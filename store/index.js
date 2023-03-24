@@ -36,10 +36,7 @@ import {
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
-import { 
-  doc, 
-  setDoc, 
-} from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore";
 
 export default createStore({
   state: {
@@ -91,42 +88,42 @@ export default createStore({
 
     // REGISTER WITH EMAIL
 
-    register({ commit }, { email, password }) {
-      return new Promise((resolve, reject) => {
-        createUserWithEmailAndPassword(getAuth(), email, password)
-          .then(() => {
-            updateProfile(getAuth().currentUser,{
-              displayName: this.username
-            })
-            return sendEmailVerification(getAuth().currentUser);
-          })
-          .then((data) => {
-            console.log("Registration Done");
-            console.log(data);
-            console.log(getAuth().currentUser.displayName);
-            commit("setUser", getAuth().currentUser);
-            resolve(data);
-          })
-          .catch((error) => {
-            let errMsg;
-            switch (error.code) {
-              case "auth/invalid-email":
-                errMsg = "Invalid email";
-                break;
-              case "auth/user-not-found":
-                errMsg = "No account with that email found";
-                break;
-              case "auth/wrong-password":
-                errMsg = "Invalid password";
-                break;
-              default:
-                errMsg = "Email or password was incorrect";
-                break;
-            }
-            console.log("Error Registering");
-            commit("setErrorMsg", errMsg);
-            reject(error);
+    register({ commit }, { username, email, password }) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const data = await createUserWithEmailAndPassword(
+            getAuth(),
+            email,
+            password
+          );
+          await updateProfile(getAuth().currentUser, {
+            displayName: username,
           });
+
+          console.log("Registration Done");
+          console.log(data);
+          commit("setUser", getAuth().currentUser);
+          resolve(data);
+        } catch (error) {
+          let errMsg;
+          switch (error.code) {
+            case "auth/invalid-email":
+              errMsg = "Invalid email";
+              break;
+            case "auth/user-not-found":
+              errMsg = "No account with that email found";
+              break;
+            case "auth/wrong-password":
+              errMsg = "Invalid password";
+              break;
+            default:
+              errMsg = "Email or password was incorrect";
+              break;
+          }
+          console.log("Error Registering");
+          commit("setErrorMsg", errMsg);
+          reject(error);
+        }
       });
     },
 
