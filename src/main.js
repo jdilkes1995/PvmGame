@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "../routes.js";
 import store from "../store";
+import 'material-icons/iconfont/material-icons.css';
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
