@@ -34,7 +34,12 @@ import {
   sendEmailVerification,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
+import { 
+  doc, 
+  setDoc, 
+} from "firebase/firestore"; 
 
 export default createStore({
   state: {
@@ -90,11 +95,15 @@ export default createStore({
       return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(getAuth(), email, password)
           .then(() => {
+            updateProfile(getAuth().currentUser,{
+              displayName: this.username
+            })
             return sendEmailVerification(getAuth().currentUser);
           })
           .then((data) => {
             console.log("Registration Done");
             console.log(data);
+            console.log(getAuth().currentUser.displayName);
             commit("setUser", getAuth().currentUser);
             resolve(data);
           })
