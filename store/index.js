@@ -34,6 +34,7 @@ import {
   sendEmailVerification,
   GoogleAuthProvider,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -59,8 +60,10 @@ export default createStore({
         signInWithEmailAndPassword(getAuth(), email, password)
           .then((data) => {
             console.log("Signed in");
-            console.log(data);
+            // console.log(data);
             commit("setUser", data.user);
+            // Save the user object to local storage
+            localStorage.setItem("user", JSON.stringify(data.user));
             resolve(data);
           })
           .catch((error) => {
@@ -80,9 +83,25 @@ export default createStore({
                 errMsg = "Email or password was incorrect";
                 break;
             }
+            console.log(error);
             commit("setErrorMsg", errMsg);
             reject(error);
           });
+      });
+    },
+
+    // SIGN OUT
+    signOut({ commit }) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          await signOut(getAuth()); // Sign out the user from Firebase
+          localStorage.removeItem("user"); // Remove user data from local storage
+          commit("setUser", null); // Update the user state in Vuex to null
+          resolve();
+        } catch (error) {
+          console.error(error);
+          reject(error);
+        }
       });
     },
 
@@ -129,21 +148,21 @@ export default createStore({
 
     // REGISTER WITH GOOGLE
 
-    signInWithGoogle({ commit }) {
-      return new Promise((resolve, reject) => {
-        const provider = new GoogleAuthProvider();
-        signInWithPopup(getAuth(), provider)
-          .then((result) => {
-            console.log(result.user);
-            commit("setUser", result.user);
-            resolve(result.user);
-          })
-          .catch((error) => {
-            console.log("Error signing in with Google");
-            commit("setErrorMsg", error.message);
-            reject(error);
-          });
-      });
-    },
+    // signInWithGoogle({ commit }) {
+    //   return new Promise((resolve, reject) => {
+    //     const provider = new GoogleAuthProvider();
+    //     signInWithPopup(getAuth(), provider)
+    //       .then((result) => {
+    //         console.log(result.user);
+    //         commit("setUser", result.user);
+    //         resolve(result.user);
+    //       })
+    //       .catch((error) => {
+    //         console.log("Error signing in with Google");
+    //         commit("setErrorMsg", error.message);
+    //         reject(error);
+    //       });
+    //   });
+    // },
   },
 });

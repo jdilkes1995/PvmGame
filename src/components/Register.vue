@@ -19,9 +19,9 @@
         <input type="password" placeholder="Password" v-model="password" />
         <div class="register__buttons">
           <button class="submit" @click="register">Register</button>
-          <button class="google" @click="signInWithGoogle">
+          <!-- <button class="google" @click="signInWithGoogle">
             Sign In With Google
-          </button>
+          </button> -->
         </div>
       </div>
       <div v-if="hasAccount" class="register__form-inner">
@@ -41,8 +41,8 @@ export default {
   data() {
     return {
       username: "",
-      email: null,
-      password: null,
+      email: "",
+      password: "",
       errMsg: null,
       hasAccount: true,
     };
@@ -67,20 +67,21 @@ export default {
           this.errMsg = this.errorMsg;
         });
     },
-    signInWithGoogle() {
-      this.$store
-        .dispatch("signInWithGoogle")
-        .then(() => {
-          this.$router.push("/success");
-        })
-        .catch((error) => {
-          // handle the error
-        });
-    },
+    // signInWithGoogle() {
+    //   this.$store
+    //     .dispatch("signInWithGoogle")
+    //     .then(() => {
+    //       this.$router.push("/success");
+    //     })
+    //     .catch((error) => {
+    //       // handle the error
+    //     });
+    // },
     signIn() {
       this.$store
         .dispatch("signIn", { email: this.email, password: this.password })
         .then(() => {
+          localStorage.setItem("isSignedIn", true);
           this.$router.push("/success");
         })
         .catch((error) => {
@@ -95,7 +96,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .register {
   height: 100vh;
   display: flex;
@@ -165,7 +166,7 @@ export default {
   &__buttons {
     button {
       padding: 8px 16px;
-      width: auto;
+      width: 100%;
       border: none;
       margin-top: 8px;
       margin-right: 8px;
