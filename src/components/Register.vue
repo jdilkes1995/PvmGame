@@ -24,7 +24,11 @@
           </button> -->
         </div>
       </div>
-      <div v-if="hasAccount" class="register__form-inner">
+      <div
+        v-if="hasAccount"
+        class="register__form-inner"
+        @keydown.enter="signIn"
+      >
         <input type="text" placeholder="Email" v-model="email" />
         <input type="password" placeholder="Password" v-model="password" />
         <p v-if="errMsg">{{ this.errMsg }}</p>
