@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/components/Home.vue";
 import Success from "@/components/Success.vue";
 import Register from "@/components/Register.vue";
-// import SignIn from "@/components/SignIn.vue";
+import SignIn from "@/components/SignIn.vue";
 import MyTeam from "@/components/MyTeam.vue";
 import CreateTeam from "@/components/CreateTeam.vue";
 import Play from "@/components/Play.vue";
