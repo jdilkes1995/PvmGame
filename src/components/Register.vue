@@ -61,7 +61,7 @@ export default {
           password: this.password,
         })
         .then(() => {
-          this.$router.push("/success");
+          this.$router.push("/");
         })
         .catch((error) => {
           this.errMsg = this.errorMsg;
@@ -82,7 +82,7 @@ export default {
         .dispatch("signIn", { email: this.email, password: this.password })
         .then(() => {
           localStorage.setItem("isSignedIn", true);
-          this.$router.push("/success");
+          this.$router.push("/");
         })
         .catch((error) => {
           this.errMsg = this.errorMsg;
@@ -90,7 +90,6 @@ export default {
     },
     setHasAccount(value) {
       this.hasAccount = value;
-      console.log("hasAccount changed:", this.hasAccount);
     },
   },
 };

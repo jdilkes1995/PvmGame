@@ -48,8 +48,8 @@ const ToggleMenu = () => {
 
 <style lang="scss" scoped>
 aside {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   width: calc(2rem + 32px);
   min-height: 100vh;
   overflow: hidden;
