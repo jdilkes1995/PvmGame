@@ -1,37 +1,8 @@
-// import { createStore } from "vuex";
-// import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-
-// const store = createStore({
-//   state: {
-//     user: null,
-//   },
-//   mutations: {
-//     setSignedInData(state, data) {
-//       state.user = data.user;
-//     },
-//   },
-//   actions: {
-//     signIn({ commit }, { email, password }) {
-//       signInWithEmailAndPassword(getAuth(), email, password)
-//         .then((data) => {
-//           commit("setSignedInData", data);
-//         })
-//         .catch((error) => {
-//           console.error(error);
-//         });
-//     },
-//   },
-// });
-
-// export default store;
-
-// store.js or store/index.js
 import { createStore } from "vuex";
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendEmailVerification,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -53,21 +24,15 @@ export default createStore({
     },
   },
   actions: {
-    //  SIGN IN
-
     signIn({ commit }, { email, password }) {
       return new Promise((resolve, reject) => {
         signInWithEmailAndPassword(getAuth(), email, password)
           .then((data) => {
-            console.log("Signed in");
-            // console.log(data);
             commit("setUser", data.user);
-            // Save the user object to local storage
             localStorage.setItem("user", JSON.stringify(data.user));
             resolve(data);
           })
           .catch((error) => {
-            console.log("Error logging in");
             let errMsg;
             switch (error.code) {
               case "auth/invalid-email":
@@ -83,29 +48,24 @@ export default createStore({
                 errMsg = "Email or password was incorrect";
                 break;
             }
-            console.log(error);
             commit("setErrorMsg", errMsg);
             reject(error);
           });
       });
     },
 
-    // SIGN OUT
     signOut({ commit }) {
       return new Promise(async (resolve, reject) => {
         try {
-          await signOut(getAuth()); // Sign out the user from Firebase
-          localStorage.removeItem("user"); // Remove user data from local storage
-          commit("setUser", null); // Update the user state in Vuex to null
+          await signOut(getAuth());
+          localStorage.removeItem("user");
+          commit("setUser", null);
           resolve();
         } catch (error) {
-          console.error(error);
           reject(error);
         }
       });
     },
-
-    // REGISTER WITH EMAIL
 
     register({ commit }, { username, email, password }) {
       return new Promise(async (resolve, reject) => {
@@ -119,8 +79,6 @@ export default createStore({
             displayName: username,
           });
 
-          console.log("Registration Done");
-          console.log(data);
           commit("setUser", getAuth().currentUser);
           resolve(data);
         } catch (error) {
@@ -139,26 +97,22 @@ export default createStore({
               errMsg = "Email or password was incorrect";
               break;
           }
-          console.log("Error Registering");
           commit("setErrorMsg", errMsg);
           reject(error);
         }
       });
     },
 
-    // REGISTER WITH GOOGLE
-
+    // Uncomment this section if you want to enable Google sign-in
     // signInWithGoogle({ commit }) {
     //   return new Promise((resolve, reject) => {
     //     const provider = new GoogleAuthProvider();
     //     signInWithPopup(getAuth(), provider)
     //       .then((result) => {
-    //         console.log(result.user);
     //         commit("setUser", result.user);
     //         resolve(result.user);
     //       })
     //       .catch((error) => {
-    //         console.log("Error signing in with Google");
     //         commit("setErrorMsg", error.message);
     //         reject(error);
     //       });

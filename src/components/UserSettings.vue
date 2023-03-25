@@ -38,19 +38,18 @@ export default {
       const user = JSON.parse(localStorage.getItem("user"));
       this.$store.commit("setUser", user);
     }
-    console.log("success user", this.user);
-    if (!this.isSignedIn) {
-      this.$router.push("/"); // Redirect to login if user is not signed in
-    } else if (!this.user) {
-      // Try to retrieve the user data from local storage
-      const userData = localStorage.getItem("user");
-      if (userData) {
-        this.$store.commit("setUser", JSON.parse(userData));
-      } else {
-        // If the user data is not in local storage, redirect to the login page
-        this.$router.push("/");
-      }
-    }
+    // if (!this.isSignedIn) {
+    //   this.$router.push("/"); // Redirect to login if user is not signed in
+    // } else if (!this.user) {
+    //   // Try to retrieve the user data from local storage
+    //   const userData = localStorage.getItem("user");
+    //   if (userData) {
+    //     this.$store.commit("setUser", JSON.parse(userData));
+    //   } else {
+    //     // If the user data is not in local storage, redirect to the login page
+    //     this.$router.push("/");
+    //   }
+    // }
   },
 };
 </script>

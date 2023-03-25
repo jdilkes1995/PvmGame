@@ -54,9 +54,7 @@ aside {
   min-height: 100vh;
   overflow: hidden;
   padding: 1rem;
-  position: absolute;
-  top: 0;
-  left: 0;
+  float: left;
 
   background-color: var(--dark);
   color: var(--light);
