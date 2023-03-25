@@ -61,6 +61,7 @@ export default {
           password: this.password,
         })
         .then(() => {
+          localStorage.setItem("isSignedIn", true);
           this.$router.push("/");
         })
         .catch((error) => {
