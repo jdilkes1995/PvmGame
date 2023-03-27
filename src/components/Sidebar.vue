@@ -14,7 +14,7 @@
     <div class="menu">
       <router-link class="button" to="/">
         <span class="material-icons">home</span>
-        <span class="text">home</span>
+        <span class="text">Home</span>
       </router-link>
       <router-link class="button" to="/MyTeam">
         <span class="material-icons">perm_identity</span>
@@ -47,6 +47,8 @@ const ToggleMenu = () => {
 </script>
 
 <style lang="scss" scoped>
+@import "@/global/colours";
+
 aside {
   // display: flex;
   // flex-direction: column;
@@ -56,7 +58,7 @@ aside {
   padding: 1rem;
   float: left;
 
-  background-color: var(--dark);
+  background-color: $secondary-01;
   color: var(--light);
 
   transition: 0.2s ease-out;
@@ -88,7 +90,7 @@ aside {
 
       &:hover {
         .material-icons {
-          color: var(--primary);
+          color: $secondary-02;
           transform: translateX(0.5rem);
           transition: 0.2s ease-out;
         }
@@ -141,12 +143,12 @@ aside {
         background-color: var(--dark-alt);
 
         .material-icons {
-          color: var(--primary);
+          color: $secondary-02;
         }
       }
 
       &.router-link-exact-active {
-        border-right: 5px solid var(--primary);
+        border-right: 5px solid $secondary-02;
       }
     }
   }

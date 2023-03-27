@@ -17,12 +17,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap");
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  overflow: hidden;
   /* margin-top: 60px; */
 }
 
@@ -30,6 +31,11 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Jura", sans-serif;
+}
+
+.container {
+  padding: 16px 96px;
 }
 
 :root {
@@ -40,12 +46,7 @@ export default {
   --light: #f1f5f9;
   --sidebar-width: 300px;
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Fira sans", sans-serif;
-}
+
 body {
   background: var(--light);
 }
@@ -56,16 +57,16 @@ button {
   outline: none;
   background: none;
 }
-.app {
-  display: flex;
+// .app {
+//   display: flex;
 
-  main {
-    flex: 1 1 0;
-    padding: 2rem;
+//   main {
+//     flex: 1 1 0;
+//     padding: 2rem;
 
-    @media (max-width: 768px) {
-      padding-left: 6rem;
-    }
-  }
-}
+//     @media (max-width: 768px) {
+//       padding-left: 6rem;
+//     }
+//   }
+// }
 </style>
