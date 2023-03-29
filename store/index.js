@@ -145,8 +145,8 @@ export default createStore({
         creatorUid: state.user.uid,
         members: [
           {
-            UID: state.user.uid,
-            Email: state.user.email,
+            uid: state.user.uid,
+            email: state.user.email,
             displayName: state.user.displayName,
           },
         ],
