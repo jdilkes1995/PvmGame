@@ -129,7 +129,7 @@ export default createStore({
     },
 
     createTeam({ commit, state }, { teamName, teamPhrase, teamColour }) {
-      const uid = state.user ? state.user.uid : null;
+      // const uid = state.user ? state.user.uid : null;
 
       // Get a reference to the "teams" collection
       const teamsRef = collection(db, "teams");
@@ -142,8 +142,14 @@ export default createStore({
         name: teamName,
         phrase: teamPhrase,
         colour: teamColour,
-        creatorUid: uid,
-        members: [uid],
+        creatorUid: state.user.uid,
+        members: [
+          {
+            UID: state.user.uid,
+            Email: state.user.email,
+            displayName: state.user.displayName,
+          },
+        ],
         // members: [{ uid: uid, isLeader: true }],
       };
 
