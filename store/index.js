@@ -8,12 +8,14 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { db, addDoc } from "@/firestoreDB.js";
 
 export default createStore({
   state: {
     errorMsg: "",
     user: null,
+    teams: [],
   },
   mutations: {
     setErrorMsg(state, errorMsg) {
@@ -21,6 +23,9 @@ export default createStore({
     },
     setUser(state, user) {
       state.user = user;
+    },
+    addTeam(state, team) {
+      state.teams.push(team);
     },
   },
   actions: {
@@ -103,20 +108,57 @@ export default createStore({
       });
     },
 
-    // Uncomment this section if you want to enable Google sign-in
-    // signInWithGoogle({ commit }) {
-    //   return new Promise((resolve, reject) => {
-    //     const provider = new GoogleAuthProvider();
-    //     signInWithPopup(getAuth(), provider)
-    //       .then((result) => {
-    //         commit("setUser", result.user);
-    //         resolve(result.user);
-    //       })
-    //       .catch((error) => {
-    //         commit("setErrorMsg", error.message);
-    //         reject(error);
-    //       });
-    //   });
-    // },
+    addUserToFirestore({ state }, userData) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          // Get a Firestore reference to the "users" collection
+          const usersRef = collection(db, "users");
+
+          // Add the user's UID to the user data
+          userData.uid = state.user.uid;
+
+          // Add the user data to the "users" collection
+          const docRef = await addDoc(usersRef, userData);
+
+          // Resolve with the ID of the newly created document
+          resolve(docRef.id);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    },
+
+    createTeam({ commit, state }, { teamName, teamPhrase, teamColour }) {
+      const uid = state.user ? state.user.uid : null;
+
+      // Get a reference to the "teams" collection
+      const teamsRef = collection(db, "teams");
+
+      // Generate a new document reference for the team
+      const teamRef = doc(teamsRef);
+
+      // Create a new team object
+      const team = {
+        name: teamName,
+        phrase: teamPhrase,
+        colour: teamColour,
+        creatorUid: uid,
+        members: [uid],
+        // members: [{ uid: uid, isLeader: true }],
+      };
+
+      // Add the team to the Firestore database
+      setDoc(teamRef, team)
+        .then(() => {
+          // Add the team to the state
+          commit("addTeam", {
+            id: teamRef.id,
+            ...team,
+          });
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    },
   },
 });

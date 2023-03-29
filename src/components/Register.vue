@@ -58,6 +58,10 @@ export default {
   },
   methods: {
     register() {
+      const userData = {
+        username: this.username,
+        email: this.email,
+      };
       this.$store
         .dispatch("register", {
           username: this.username,
@@ -65,11 +69,16 @@ export default {
           password: this.password,
         })
         .then(() => {
+          // After the user has been registered, add their data to Firestore
+          return this.$store.dispatch("addUserToFirestore", userData);
+        })
+        .then((docRefId) => {
+          console.log("User added successfully with ID:", docRefId);
           localStorage.setItem("isSignedIn", true);
           this.$router.push("/");
         })
         .catch((error) => {
-          this.errMsg = this.errorMsg;
+          this.errMsg = error.message;
         });
     },
     // signInWithGoogle() {
