@@ -18,6 +18,7 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap");
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,13 +44,15 @@ export default {
   --grey: #64748b;
   --dark: #1e293b;
   --dark-alt: #334155;
+  --gearcards: #001d38;
   --light: #f1f5f9;
   --sidebar-width: 300px;
 }
 
 body {
-  background: var(--light);
+  // background: var(--light);
 }
+
 button {
   cursor: pointer;
   appearance: none;
@@ -57,6 +60,7 @@ button {
   outline: none;
   background: none;
 }
+
 // .app {
 //   display: flex;
 

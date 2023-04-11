@@ -16,17 +16,21 @@
         <span class="material-icons">home</span>
         <span class="text">Home</span>
       </router-link>
-      <router-link class="button" to="/MyTeam">
-        <span class="material-icons">perm_identity</span>
-        <span class="text">My team</span>
-      </router-link>
       <router-link class="button" to="/CreateTeam">
         <span class="material-icons">create</span>
         <span class="text">Create a team</span>
       </router-link>
+      <router-link class="button" to="/MyTeam">
+        <span class="material-icons">perm_identity</span>
+        <span class="text">My team</span>
+      </router-link>
       <router-link class="button" to="/Play">
         <span class="material-icons">videogame_asset</span>
         <span class="text">Play!</span>
+      </router-link>
+      <router-link class="button" to="/PlayerGear">
+        <span class="material-icons">shield</span>
+        <span class="text">Gear Setups</span>
       </router-link>
       <router-link class="button" to="/usersettings">
         <span class="material-icons">settings</span>
@@ -115,6 +119,7 @@ aside {
     display: flex;
     flex-direction: column;
     margin: 0 -1rem;
+
     a {
       margin-bottom: 25px;
     }

@@ -11,6 +11,7 @@ import {
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db, addDoc } from "@/firestoreDB.js";
 
+
 export default createStore({
   state: {
     errorMsg: "",

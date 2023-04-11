@@ -6,6 +6,7 @@ import MyTeam from "@/components/MyTeam.vue";
 import CreateTeam from "@/components/CreateTeam.vue";
 import Play from "@/components/Play.vue";
 import UserSettings from "@/components/UserSettings.vue";
+import PlayerGear from "@/components/PlayerGear";
 
 const routes = [
   { path: "/", component: Home },
@@ -14,6 +15,7 @@ const routes = [
   { path: "/CreateTeam", component: CreateTeam },
   { path: "/UserSettings", component: UserSettings },
   { path: "/Play", component: Play },
+  { path: "/PlayerGear", component: PlayerGear },
   {
     path: "/register",
     component: Register,
